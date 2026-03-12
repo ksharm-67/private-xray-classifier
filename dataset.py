@@ -19,7 +19,6 @@ x_train, x_test, y_train, y_test = train_test_split(x, y, train_size = 0.75, ran
 class CustomImageDataset(Dataset):
     def __init__(self, filenames, labels, transform=None, target_transform=None):
         self.filenames = filenames
-        self.img_dir = img_dir
         self.labels = labels
         self.transform = transform
         self.target_transform = target_transform
@@ -28,7 +27,10 @@ class CustomImageDataset(Dataset):
         return len(self.labels)
 
     def __getitem__(self, idx):
-        img_path = os.path.join(self.img_dir, self.labels.iloc[idx])
+        for i in ['images_001', 'images_002', 'images_003']:
+            if os.path.exists(os.path.join('assets/', i)):
+                img_path = os.path.join('assets/', i, 'images', self.filenames.iloc[idx])
+                
         image = Image.open(img_path)
         label = self.labels.iloc[idx]
         if self.transform:
