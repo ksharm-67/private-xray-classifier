@@ -7,7 +7,6 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 from torchvision.models import resnet50, ResNet50_Weights
 from torch.optim import Adam
-from opacus import PrivacyEngine
 
 transform = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -28,15 +27,6 @@ optimizer = Adam(model.parameters(), lr = 0.001)
 
 device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 model.to(device)
-
-pe = PrivacyEngine()
-model, optimizer, train_dl = pe.make_private(
-    module = model,
-    optimizer = optimizer,
-    data_loader = train_dl,
-    noise_multiplier = 1.1,
-    max_grad_norm = 1.0,
-    )
 
 def train(model: resnet50, train_dl: DataLoader, criterion) -> int:
     #Trains one epoch
