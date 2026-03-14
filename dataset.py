@@ -31,9 +31,7 @@ class CustomImageDataset(Dataset):
     def __getitem__(self, idx):
         for i in ['images_001', 'images_002', 'images_003', 'images_004', 'images_005', 'images_006',
                   'images_007', 'images_008', 'images_009', 'images_010', 'images_011', 'images_012']:
-            print("searching in: ", i)
             pth = os.path.join('assets', i, 'images', self.filenames[idx])
-            print(f"Checking: {os.path.abspath(pth)}")
             if os.path.exists(pth):
                 img_path = pth
                 break

@@ -46,6 +46,8 @@ def train(model: resnet50, train_dl: DataLoader, criterion) -> int:
         optimizer.step()
         
         running_loss += loss.item()
+        if i % 100 == 0:
+            print(f"Batch {i}, loss: {loss.item()}")
         
     return running_loss
     
@@ -66,20 +68,6 @@ for epoch in range(100):
     rl = train(model, train_dl, criterion)
     vl = validate(model, test_dl, criterion)
     print(f"The running loss is = {rl} and the val loss is = {vl}")
-    
-
-            
-            
-            
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
