@@ -6,7 +6,7 @@ from torchvision.models import resnet50, ResNet50_Weights
 
 def define_model() -> resnet50:
     model = resnet50(weights = 'DEFAULT')
-    model.fc = nn.Linear(2048, 15)
+    model.fc = nn.Linear(1024, 15)
     
     return model
 
