@@ -73,7 +73,7 @@ def validate(model: resnet50, test_dl: DataLoader, criterion) -> int:
             
     return val_loss
 
-for epoch in range(100):
+for epoch in range(5):
     rl = train(model, train_dl, criterion)
     vl = validate(model, test_dl, criterion)
     print(f"The running loss is = {rl} and the val loss is = {vl}")
@@ -92,7 +92,11 @@ for i in range(15):
     roc_auc = auc(fpr[i], tpr[i])
     plt.plot(fpr[i], tpr[i], label=f'{model.__class__.__name__} - Class {i} (AUC = {roc_auc:.2f})')
 
-
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curves for ChestX-ray14 Disease Classification')
+plt.legend(loc="lower right")
+plt.show()
 
 
 
