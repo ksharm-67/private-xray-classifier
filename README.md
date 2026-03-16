@@ -27,7 +27,7 @@ path = kagglehub.dataset_download("nih-chest-xrays/data")
 ```
 python train.py
 ```
-Trains for 100 epochs with Adam optimizer at a learning rate of 0.001 and batch size of 64. Model weights are saved after each epoch to model.pth.
+Trains for 5 epochs with Adam optimizer at a learning rate of 0.001 and batch size of 64. Model weights are saved after each epoch to model.pth.
 
 ### Tech Stack
 
